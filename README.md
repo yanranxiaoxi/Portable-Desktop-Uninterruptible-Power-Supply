@@ -1,92 +1,56 @@
 # Portable Desktop Uninterruptible Power Supply
 
-便携桌面不间断电源
+⭐ 便携桌面不间断电源 ⭐
 
-## Getting started
+🔗 [GitLab (Homepage)](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply) | 🔗 [OSHWHub](https://oshwhub.com/yanranxiaoxi/Portable-Desktop-Uninterruptible-Power-Supply)
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+![实拍图](https://downloadserver.soraharu.com:7000/Portable%20Desktop%20Uninterruptible%20Power%20Supply/Image/Product_quality_4.jpg)
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## 🤔 这是什么
 
-## Add your files
+这是一个便携桌面不间断电源，使用 [立创 EDA](https://lceda.cn/) 进行开发。
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+本设计采用一颗由 英集芯(INJOINIC) 研发的 IP5306 高集成度锂电池充放电管理芯片作为核心的电池芯片，采用 芯龙(XLSEMI) 推出的 XL6019E1 升压型 DC-DC 电源芯片实现可调输出功能，能够实现在 7V ~ 35V 宽输入电压范围内的稳压输出，主要使用场景为作为功耗较低的桌面、嵌入式设备（如树莓派服务器、智能家居设备）的不间断电源。
 
-```
-cd existing_repo
-git remote add origin https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply.git
-git branch -M master
-git push -uf origin master
-```
+本设计不间断电源的功能实现逻辑如下：
+- `外部 7V ~ 35V 供电` -> `电池输出及 XL6019E1 升压控制关闭` -> `VOUT = VIN - 0.7V（肖特基二极管防倒灌损耗）` -> `（可选择）780X LDO 输出`
+- `无外部供电` -> `开启电池输出及 XL6019E1 升压控制` -> `电位器(R5)控制 VOUT 电压` -> `（可选择）780X LDO 输出`
 
-## Integrate with your tools
+如果需要实现完整的不间断电源功能，需要首先确定用电器需求的电压值，按照 PCB 上标记正确接入 18650 电池（**不要反接电池！**如需使用多节电池，需确保所有电池的电压及电池性能一致，否则可能导致电池组快速老化），在电源输出(OUTPUT)端接入电压表测量输出电压（如无电压输出，需按下 `SW1` 开启放电），调整电位器(`R5`)直到电压表读数为用电器需求的电压值，最后将能够提供对应电压的电源适配器连接到本设计的电源输入(INPUT)端，将电源输出端连接至用电器，即完成配置。
 
-- [ ] [Set up project integrations](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply/-/settings/integrations)
+如果需要使用本设计连接多个不同电压的用电器，可以使用位于输出端口旁的两个 780X LDO 焊盘位 `U5` `U6`，焊接对应电压的稳压芯片。
 
-## Collaborate with your team
+请注意，本设计使用的电池管理芯片所支持的最大电池输出功率为 `12W`，这意味着，如果需要保证不间断电源功能的正常工作，负载用电器的最大功率需要为 `12W` 以内，为了能够在接通外部供电的情况下能够正常为电池组充电，连接到本设计电源输入端的电源适配器需要能够提供不少于 `负载用电器功率 + 10.5W` 的供电功率。
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+如果确定你的配置十分正确，但是在由外部供电转为内部供电时负载用电器出现重启、供电不稳等状况，可能是由于三极管反应速度过慢或你所购买的 XL6019E1 芯片为盗版芯片（已发现市面存在非 芯龙 生产的盗版芯片），可以尝试在输出端加装大容量高频电解电容器解决。
 
-## Test and Deploy
+本 PCB 设计已通过完整功能性测试，且已添加 [嘉立创](https://www.jlc.com/) SMT 定位孔，可直接进行 SMT 贴片生产。但请注意，本设计完整开源并遵循 [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/) 开源协议，开源作者不对作品的安全性、完整性作任何承诺，且不对因此产生的任何损失承担后果。
 
-Use the built-in continuous integration in GitLab.
+你可以使用本项目的 [焊接助手](https://htmlpreview.soraharu.com/?https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply/-/raw/master/InteractiveHtmlBom/index.html) 有效地提升手工焊接效率，本助手通过 [InteractiveHtmlBom](https://gitlab.soraharu.com/XiaoXi/InteractiveHtmlBom) 自动生成。
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+## 🏃 主要性能参数
 
-***
+- 电池充电功率：10.5W
+- 电池最大输出功率：12W
+- 最大输入 / 输出电流：4A
+- 输入 / 输出电压范围：7V ~ 35V
 
-# Editing this README
+## 🛠️ 生产电路板
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+本项目的 Gerber 文件可以从 [Releases](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply/-/releases) 页面获取，并允许在开源许可范围内的商业目的使用。
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+*建议使用 [嘉立创](https://www.jlc.com/) 生产高品质电路板。
 
-## Name
-Choose a self-explaining name for your project.
+*It is recommended to use [JLCPCB](https://jlcpcb.com/) to produce high-quality circuit boards.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## ⚙️ 部署至 EasyEDA
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+1. 克隆本项目 [源代码](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply/-/archive/master/Portable-Desktop-Uninterruptible-Power-Supply-master.zip) 到本地
+2. 在立创 EDA 标准版编辑器中选择 `文件` -> `打开` -> `立创EDA...`
+3. 选择本项目源代码中的 `/EasyEDA/*.json` 文件并分别导入
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+## 📜 开源许可
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+基于 [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/) 许可进行开源。
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+本设计已在 [中国版权保护中心](https://www.ccopyright.com.cn/) 登记注册。
