@@ -2,7 +2,7 @@
 
 ⭐ 便携桌面不间断电源 ⭐
 
-🔗 [GitLab (Homepage)](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply) | 🔗 [OSHWHub](https://oshwhub.com/yanranxiaoxi/Portable-Desktop-Uninterruptible-Power-Supply)
+🔗 [GitLab (Homepage)](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply) | 🔗 [OSHWHub](https://oshwhub.com/yanranxiaoxi/Portable-Desktop-Uninterruptible-Power-Supply) | 🔗 [GitHub](https://github.com/yanranxiaoxi/Portable-Desktop-Uninterruptible-Power-Supply)
 
 ![实拍图](https://downloadserver.soraharu.com:7000/Portable%20Desktop%20Uninterruptible%20Power%20Supply/Image/Product_quality_4.jpg)
 
