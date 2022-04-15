@@ -1,5 +1,4 @@
-before_script:
-  - chcp 65001
+image: busybox:latest
 
 minimize_deploy:
   stage: deploy
