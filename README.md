@@ -2,6 +2,9 @@
 
 ⭐ 便携桌面不间断电源 ⭐
 
+[![pipeline status](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply/badges/master/pipeline.svg)](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply/-/commits/master)
+[![Latest Release](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply/-/badges/release.svg)](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply/-/releases)
+
 🔗 [GitLab (Homepage)](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply) | 🔗 [OSHWHub](https://oshwhub.com/yanranxiaoxi/Portable-Desktop-Uninterruptible-Power-Supply) | 🔗 [GitHub](https://github.com/yanranxiaoxi/Portable-Desktop-Uninterruptible-Power-Supply)
 
 ![实拍图](https://downloadserver.soraharu.com:7000/Portable%20Desktop%20Uninterruptible%20Power%20Supply/Image/Product_quality_4.jpg)
@@ -11,6 +14,8 @@
 这是一个便携桌面不间断电源，使用 [立创 EDA](https://lceda.cn/) 进行开发。
 
 本设计采用一颗由 英集芯(INJOINIC) 研发的 IP5306 高集成度锂电池充放电管理芯片作为核心的电池芯片，采用 芯龙(XLSEMI) 推出的 XL6019E1 升压型 DC-DC 电源芯片实现可调输出功能，能够实现在 7V ~ 35V 宽输入电压范围内的稳压输出，主要使用场景为作为功耗较低的桌面、嵌入式设备（如树莓派服务器、智能家居设备）的不间断电源。
+
+## 🍭 使用说明
 
 本设计不间断电源的功能实现逻辑如下：
 - `外部 7V ~ 35V 供电` -> `电池输出及 XL6019E1 升压控制关闭` -> `VOUT = VIN - 0.7V（肖特基二极管防倒灌损耗）` -> `（可选择）780X LDO 输出`
@@ -26,7 +31,7 @@
 
 本 PCB 设计已通过完整功能性测试，且已添加 [嘉立创](https://www.jlc.com/) SMT 定位孔，可直接进行 SMT 贴片生产。但请注意，本设计完整开源并遵循 [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/) 开源协议，开源作者不对作品的安全性、完整性作任何承诺，且不对因此产生的任何损失承担后果。
 
-你可以使用本项目的 [焊接助手](https://htmlpreview.soraharu.com/?https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply/-/raw/master/InteractiveHtmlBom/index.html) 有效地提升手工焊接效率，本助手通过 [InteractiveHtmlBom](https://gitlab.soraharu.com/XiaoXi/InteractiveHtmlBom) 自动生成。
+你可以使用本项目的 [焊接助手](https://interactivehtmlbom.soraharu.com/Portable-Desktop-Uninterruptible-Power-Supply.html) 有效地提升手工焊接效率，本助手通过 [InteractiveHtmlBom](https://gitlab.soraharu.com/XiaoXi/InteractiveHtmlBom) 流水线自动化生成。
 
 ## 🏃 主要性能参数
 
