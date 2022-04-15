@@ -1,4 +1,4 @@
-image: busybox:latest
+image: alpine:3
 
 minimize_deploy:
   stage: deploy
