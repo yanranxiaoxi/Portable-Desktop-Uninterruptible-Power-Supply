@@ -4,6 +4,7 @@
 
 [![pipeline status](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply/badges/master/pipeline.svg)](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply/-/commits/master)
 [![Latest Release](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply/-/badges/release.svg)](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply/-/releases)
+[![vercel](https://vercelbadge.soraharu.com/?app=interactivehtmlbom)](https://interactivehtmlbom.soraharu.com/)
 
 🔗 [GitLab (Homepage)](https://gitlab.soraharu.com/XiaoXi/Portable-Desktop-Uninterruptible-Power-Supply) | 🔗 [OSHWHub](https://oshwhub.com/yanranxiaoxi/Portable-Desktop-Uninterruptible-Power-Supply) | 🔗 [GitHub](https://github.com/yanranxiaoxi/Portable-Desktop-Uninterruptible-Power-Supply)
 
